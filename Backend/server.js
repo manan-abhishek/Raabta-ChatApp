@@ -16,6 +16,7 @@ const server = http.createServer(app);
 // CORS Configuration - Allow multiple frontend deployments
 // Supports Vercel preview deployments and production URLs
 const allowedOrigins = [
+  "https://raabta-chatapp.netlify.app", // Netlify production URL
   "https://raabta-a-realtime-chat-application-fawn.vercel.app",
   "https://raabta-a-realtime-cha-git-7a75ad-abhishek-kumar-nayaks-projects.vercel.app",
   "https://raabta-a-realtime-chat-application-842q-539twyq93.vercel.app",
