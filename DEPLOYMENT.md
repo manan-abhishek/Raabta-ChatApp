@@ -137,21 +137,48 @@
 
 ### Option 2: Netlify
 
-1. **Install Netlify CLI**
+1. **Install Netlify CLI** (optional, for CLI deployment)
    ```bash
    npm install -g netlify-cli
    ```
 
-2. **Build and Deploy**
+2. **Deploy via Netlify Dashboard** (Recommended)
+   - Go to [Netlify](https://app.netlify.com/)
+   - Click "Add new site" → "Import an existing project"
+   - Connect your Git repository
+   - Set build settings:
+     - **Base directory**: `Frontend`
+     - **Build command**: `npm run build`
+     - **Publish directory**: `Frontend/dist`
+
+3. **Configure Environment Variables** (IMPORTANT)
+   - Go to Site Settings → Environment Variables
+   - Add the following:
+     - `VITE_API_URL`: `https://raabta-chatapp.onrender.com/api`
+     - `VITE_SOCKET_URL`: `https://raabta-chatapp.onrender.com`
+   - **Note**: After adding environment variables, trigger a new deploy
+
+4. **Deploy via CLI** (Alternative)
    ```bash
    cd Frontend
    npm run build
    netlify deploy --prod --dir=dist
    ```
 
-3. **Configure Environment Variables**
-   - Netlify Dashboard → Site Settings → Environment Variables
-   - Add `VITE_API_URL` and `VITE_SOCKET_URL`
+5. **Update Backend CORS Configuration**
+   - After getting your Netlify URL (e.g., `https://your-app-name.netlify.app`)
+   - Update backend environment variable on Render:
+     - Add `FRONTEND_URLS` environment variable (comma-separated):
+       ```
+       https://your-app-name.netlify.app,https://raabta-chatapp.onrender.com
+       ```
+     - Or add `FRONTEND_URL`: `https://your-app-name.netlify.app`
+   - Restart your backend service on Render
+
+6. **Important Notes**
+   - The `netlify.toml` file is already configured with build settings
+   - All routes will redirect to `index.html` for React Router to work
+   - Make sure to trigger a new deploy after setting environment variables
 
 ### Option 3: Static Hosting (GitHub Pages, etc.)
 
