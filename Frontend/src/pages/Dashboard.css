@@ -1,6 +1,7 @@
 .dashboard {
   display: flex;
   height: 100vh;
+  height: 100dvh;
   background-color: var(--sidebar-bg);
   color: var(--text-main);
   overflow: hidden;
@@ -9,6 +10,7 @@
 
 .dashboard-sidebar {
   width: 380px;
+  min-width: 320px;
   display: flex;
   flex-direction: column;
   background-color: var(--sidebar-bg);
@@ -16,6 +18,8 @@
   box-shadow: var(--shadow);
   z-index: 10;
   transition: all 0.3s ease;
+  overflow: hidden;
+  height: 100%;
 }
 
 .sidebar-header {
@@ -25,6 +29,7 @@
   padding: 24px;
   background: var(--bg-gradient);
   color: white;
+  flex-shrink: 0;
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
 }
 

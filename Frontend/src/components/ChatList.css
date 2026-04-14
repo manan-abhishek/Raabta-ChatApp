@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  height: 100dvh;
   background-color: var(--sidebar-bg);
+  overflow: hidden;
 }
 
 .chat-list-header {
@@ -11,6 +13,7 @@
   align-items: center;
   padding: 20px;
   background-color: var(--sidebar-bg);
+  flex-shrink: 0;
 }
 
 .chat-list-header h2 {
@@ -40,6 +43,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   transition: all 0.2s;
+  flex-shrink: 0;
 }
 
 .new-group-btn:hover {
@@ -51,6 +55,7 @@
 .chat-search {
   padding: 0 20px 16px;
   background-color: var(--sidebar-bg);
+  flex-shrink: 0;
 }
 
 .chat-search input {

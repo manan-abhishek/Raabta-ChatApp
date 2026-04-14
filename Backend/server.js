@@ -15,6 +15,9 @@ connectDB();
 const app = express();
 const server = http.createServer(app);
 
+// ✅ TRUST PROXY (Required for Rate Limiting behind Render/Netlify proxy)
+app.set("trust proxy", 1);
+
 /* ================================
    ✅ SECURITY MIDDLEWARE
    ================================ */
@@ -26,6 +29,7 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 1000, // Increased for development
   message: "Too many requests from this IP, please try again later",
+  validate: { xForwardedForHeader: false },
 });
 
 // Stricter limiter for auth routes
@@ -33,6 +37,7 @@ const authLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 100, // Increased for development
   message: "Too many login/register attempts, please try again in an hour",
+  validate: { xForwardedForHeader: false },
 });
 
 // Stricter limiter for message sending (prevent spam)
@@ -40,6 +45,7 @@ const messageLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 300, // Increased for development
   message: "Slow down! You are sending messages too fast.",
+  validate: { xForwardedForHeader: false },
 });
 
 /* ================================
