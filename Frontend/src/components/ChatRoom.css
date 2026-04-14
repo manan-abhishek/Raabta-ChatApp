@@ -1041,12 +1041,13 @@
 }
 
 .message-bubble {
-  background: white;
+  background: var(--msg-received);
   padding: 12px 16px;
   border-radius: 18px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   position: relative;
   transition: transform 0.2s, box-shadow 0.2s;
+  color: var(--text-main);
 }
 
 .message-bubble:hover {
