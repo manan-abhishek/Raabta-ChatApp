@@ -54,10 +54,15 @@ export const chatAPI = {
   createGroupChat: (data) => api.post('/chat/group', data),
   getUserChats: () => api.get('/chat'),
   getChat: (chatId) => api.get(`/chat/${chatId}`),
+  getChatMembers: (chatId) => api.get(`/chat/${chatId}/members`),
+  updateGroup: (chatId, data) => api.put(`/chat/${chatId}`, data),
+  addMember: (chatId, userId) => api.post(`/chat/${chatId}/members`, { userId }),
+  removeMember: (chatId, userId) => api.delete(`/chat/${chatId}/members/${userId}`),
+  leaveGroup: (chatId) => api.post(`/chat/${chatId}/leave`),
+  deleteChat: (chatId) => api.delete(`/chat/${chatId}`),
   searchUsers: (query) =>
     api.get('/chat/users/search', { params: { query } }),
   getAllUsers: () => api.get('/chat/users/all'),
-  deleteChat: (chatId) => api.delete(`/chat/${chatId}`),
 };
 
 /* ===================== MESSAGE APIs ===================== */

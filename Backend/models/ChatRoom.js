@@ -3,8 +3,11 @@ const mongoose = require("mongoose");
 const chatRoomSchema = new mongoose.Schema(
   {
     name: { type: String },
+    description: { type: String, default: "" },
+    avatar: { type: String, default: "" },
     isGroup: { type: Boolean, default: false },
     users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    admin: { type: mongoose.Schema.Types.ObjectId, ref: "User", default: null },
     lastMessage: { type: mongoose.Schema.Types.ObjectId, ref: "Message" }
   },
   { timestamps: true }
@@ -13,5 +16,6 @@ const chatRoomSchema = new mongoose.Schema(
 // Index for faster queries
 chatRoomSchema.index({ users: 1 });
 chatRoomSchema.index({ isGroup: 1 });
+chatRoomSchema.index({ admin: 1 });
 
 module.exports = mongoose.model("ChatRoom", chatRoomSchema);

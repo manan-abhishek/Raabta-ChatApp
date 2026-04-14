@@ -1,3 +1,4 @@
+
 const express = require("express");
 const router = express.Router();
 const {
@@ -5,6 +6,11 @@ const {
   createGroupChat,
   getUserChats,
   getChat,
+  getChatMembers,
+  updateGroup,
+  addMember,
+  removeMember,
+  leaveGroup,
   deleteChat,
 } = require("../controllers/chatRoomController");
 const { searchUsers, getAllUsers } = require("../controllers/chatController");
@@ -22,6 +28,11 @@ router.post("/direct", createOrGetDirectChat);
 router.post("/group", createGroupChat);
 router.get("/", getUserChats);
 router.get("/:chatId", getChat);
+router.get("/:chatId/members", getChatMembers);
+router.put("/:chatId", updateGroup);
+router.post("/:chatId/members", addMember);
+router.delete("/:chatId/members/:userId", removeMember);
+router.post("/:chatId/leave", leaveGroup);
 router.delete("/:chatId", deleteChat);
 
 module.exports = router;
