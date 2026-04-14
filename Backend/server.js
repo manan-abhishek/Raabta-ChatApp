@@ -50,6 +50,7 @@ const messageLimiter = rateLimit({
 const allowedOrigins = [
   // ✅ Netlify (PRODUCTION)
   "https://raabtaarealtimechatapplication.netlify.app",
+  "https://raabta-chatapp.netlify.app",
 
   // ✅ Vercel (old / preview deployments – optional)
   "https://raabta-a-realtime-chat-application-fawn.vercel.app",
